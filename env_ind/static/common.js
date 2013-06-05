@@ -54,7 +54,7 @@ $(document).ready(function(){
 
     //console.log(map);
     map.loadMap('/static/nepal.svg', function (map) {
-        map.loadCSS('mapstyle.css', function () {
+        map.loadCSS('/static/mapstyle.css', function () {
             //map.addLayer('graticule');
             //map.addLayer('mygrat');
             map.addLayer('nepal');
@@ -68,30 +68,47 @@ $(document).ready(function(){
     
     
     function load_forest_data(percent) {
-        var count = (latLongs.length * percent) / 100;
+        var count = parseInt((latLongs.length * percent) / 100);
         map.addSymbols({
             type: Kartograph.Bubble,
-            data: latLongs[Math.floor(Math.random()*latLongs.length)],
+            data: shuffle(latLongs).slice(0, count),
             location: function(d) { return [d.lon, d.lat] },
             radius: function(d) { return 6; },
             style: 'fill:green',
-            title: function(d) { return d.name; }
+            title: function(d) { return ''; }
         });
     }
     
     function load_agro_data(percent) {
-        var count = (latLongs.length * percent) / 100;
+        var count = parseInt((latLongs.length * percent) / 100);
         map.addSymbols({
             type: Kartograph.Bubble,
-            data: latLongs[Math.floor(Math.random()*latLongs.length)],
+            data: shuffle(latLongs).slice(0, count),
             location: function(d) { return [d.lon, d.lat] },
             radius: function(d) { return 6; },
             style: 'fill:blue',
-            title: function(d) { return d.name; }
+            title: function(d) { return ''; }
         });
     }
     
     $('#year').on('change', function () {
-        console.log('here');
+        $.get('/visualize/getyear/' + $(this).val(), function (data) {
+            //console.log(data['forest']);
+            load_forest_data(parseInt(data['forest']));
+            load_agro_data(parseInt(data['agro']));
+        });
+    });
+    
+    $.get('/visualize/getyear/2004', function (data) {
+        //console.log(data['forest']);
+        load_forest_data(parseInt(data['forest']));
+        load_agro_data(parseInt(data['agro']));
     });
 });
+
+//+ Jonas Raoni Soares Silva
+//@ http://jsfromhell.com/array/shuffle [v1.0]
+function shuffle(o){ //v1.0
+    for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+};
