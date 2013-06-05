@@ -1,5 +1,6 @@
 import os
 import csv
+import json
 from django.conf import settings
 from django.shortcuts import HttpResponse, render_to_response
 from kartograph import Kartograph
@@ -19,12 +20,6 @@ def generate(request):
                 "id" : "nepal",
                 "src" : os.path.join(settings.BASEPATH, 'data',
                                      'nepal_administrative.shp')
-            },
-            {
-                "id" : "mygrat",
-                "special" : "graticule",
-                "latitudes" : 1,
-                "longitudes" : 1
             }
         ],
         "proj" : {
@@ -45,3 +40,30 @@ def generate(request):
 
 def index(request):
     return render_to_response('visualize/index.html')
+
+
+def getyear(request, year):
+    data = {
+        '2004' : {
+            'agriculture': 4259,
+            'forest': 3688.8,
+            'total': 14335
+        },
+        '2005' : {
+            'agriculture': 4259,
+            'forest': 3636,
+            'total': 14335
+        },
+        '2006' : {
+            'agriculture': 4259,
+            'forest': 3636,
+            'total': 14335
+        }
+    }
+    item = data[year]
+    data = {
+        'forest': (100 * item['forest']) / item['total'],
+        'agro': (100 * item['agriculture']) / item['total'],
+    }
+    #return 
+    return HttpResponse(json.dumps(data), mimetype="application/json")

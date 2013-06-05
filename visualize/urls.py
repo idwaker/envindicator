@@ -4,4 +4,5 @@ urlpatterns = patterns('',
     url(r'^$', 'visualize.views.home'),
     url(r'^generate$', 'visualize.views.generate'),
     url(r'^index$', 'visualize.views.index'),
+    url(r'^getyear/(\d+)$', 'visualize.views.getyear'),
 )
