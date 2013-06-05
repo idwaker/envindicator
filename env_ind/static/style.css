@@ -24,9 +24,6 @@ body{
 	margin-bottom: 20px;
 	padding: 20px;
 }
-#map-wrap{
-	height: 300px;
-}
 #filter-wrap{
 	color: #333333;
 }
@@ -36,4 +33,12 @@ body{
 .chart{
 	background: #ffffff;
 	height: 300px;
+}
+#pesticide_div{
+	float: left;
+	width: 420px;
+}
+#food_div{
+	float: right;
+	width: 420px;
 }
