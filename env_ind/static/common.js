@@ -6,47 +6,57 @@ $(document).ready(function(){
     var map = Kartograph.map('#map');
     //var paper;
     var latLongs = []
-    for (var i=82; i<=88; i++) {
-        if (i >= 82) {
-            latLongs.push({ lon: i, lat: 27.9 })
+    longs = [
+            81.0, 81.2, 81.4, 81.6, 81.8,
+             82.0, 82.2, 82.4, 82.6, 82.8,
+             83.0, 83.2, 83.4, 83.6, 83.8,
+             84.0, 84.2, 84.4, 84.6, 84.8,
+             85.0, 85.2, 85.4, 85.6, 85.8,
+             86.0, 86.2, 86.4, 86.6, 86.8,
+             87.0, 87.2, 87.4, 87.6, 87.8,
+             88.0
+             ]
+    for (var i=0; i<longs.length; i++) {
+        if (longs[i] >= 82) {
+            latLongs.push({ lon: longs[i], lat: 27.9 })
         }
-        if (i >= 83) {
-            latLongs.push({ lon: i, lat: 27.5 }, { lon: i, lat: 27.6 },
-                      { lon: i, lat: 27.7 }, { lon: i, lat: 27.8 })
+        if (longs[i] >= 83) {
+            latLongs.push({ lon: longs[i], lat: 27.5 }, { lon: longs[i], lat: 27.6 },
+                      { lon: longs[i], lat: 27.7 }, { lon: longs[i], lat: 27.8 })
         }
-        if (i >= 85) {
-            latLongs.push({ lon: i, lat: 27.4 }, { lon: i, lat: 27.3 },
-                      { lon: i, lat: 27.2 }, { lon: i, lat: 27.1 },
-                      { lon: i, lat: 27.0 })
+        if (longs[i] >= 85) {
+            latLongs.push({ lon: longs[i], lat: 27.4 }, { lon: longs[i], lat: 27.3 },
+                      { lon: longs[i], lat: 27.2 }, { lon: longs[i], lat: 27.1 },
+                      { lon: longs[i], lat: 27.0 })
         }
         
-        if (i >= 86) {
-            latLongs.push({ lon: i, lat: 26.9 }, { lon: i, lat: 26.8 },
-                      { lon: i, lat: 26.7 })
+        if (longs[i] >= 86) {
+            latLongs.push({ lon: longs[i], lat: 26.9 }, { lon: longs[i], lat: 26.8 },
+                      { lon: longs[i], lat: 26.7 })
         }
-    }
-    
-    for (var i=82; i<=85; i++) {
-        latLongs.push({ lon: i, lat: 28 }, { lon: i, lat: 28.1 },
-                      { lon: i, lat: 28.2 }, { lon: i, lat: 28.3 },
-                      { lon: i, lat: 28.4 }, { lon: i, lat: 28.5 })
-    }
-    
-    for (var i=81; i<=84; i++) {
-        latLongs.push({ lon: i, lat: 28.6 }, { lon: i, lat: 28.7 },
-                      { lon: i, lat: 28.8 }, { lon: i, lat: 28.9 },
-                      { lon: i, lat: 29.0 }, { lon: i, lat: 29.1 },
-                      { lon: i, lat: 29.2 }, { lon: i, lat: 29.2 })
-    }
-    
-    for (var i=81; i<=83; i++) {
-        latLongs.push({ lon: i, lat: 29.3 }, { lon: i, lat: 29.4 },
-                      { lon: i, lat: 29.5 }, { lon: i, lat: 29.6 })
-    }
-    
-    for (var i=81; i<=82; i++) {
-        latLongs.push({ lon: i, lat: 29.7 }, { lon: i, lat: 29.8 },
-                      { lon: i, lat: 29.9 }, { lon: i, lat: 30.0 })
+        
+        if (longs[i] > 82 && longs[i] <= 85) {
+            latLongs.push({ lon: longs[i], lat: 28 }, { lon: longs[i], lat: 28.1 },
+                      { lon: longs[i], lat: 28.2 }, { lon: longs[i], lat: 28.3 },
+                      { lon: longs[i], lat: 28.4 }, { lon: longs[i], lat: 28.5 })
+        }
+        
+        if (longs[i] > 81 && longs[i] <= 84) {
+            latLongs.push({ lon: longs[i], lat: 28.6 }, { lon: longs[i], lat: 28.7 },
+                      { lon: longs[i], lat: 28.8 }, { lon: longs[i], lat: 28.9 },
+                      { lon: longs[i], lat: 29.0 }, { lon: longs[i], lat: 29.1 },
+                      { lon: longs[i], lat: 29.2 }, { lon: longs[i], lat: 29.2 })
+        }
+        
+        if (longs[i] >= 81 && longs[i] <= 83) {
+            latLongs.push({ lon: longs[i], lat: 29.3 }, { lon: longs[i], lat: 29.4 },
+                      { lon: longs[i], lat: 29.5 }, { lon: longs[i], lat: 29.6 })
+        }
+        
+        if (longs[i] >= 81 && longs[i] <= 82) {
+            latLongs.push({ lon: longs[i], lat: 29.7 }, { lon: longs[i], lat: 29.8 },
+                      { lon: longs[i], lat: 29.9 }, { lon: longs[i], lat: 30.0 })
+        }
     }
     
     //console.log(latLongs.length);
@@ -94,6 +104,7 @@ $(document).ready(function(){
     $('#year').on('change', function () {
         $.get('/visualize/getyear/' + $(this).val(), function (data) {
             //console.log(data['forest']);
+            map.removeSymbols();
             load_forest_data(parseInt(data['forest']));
             load_agro_data(parseInt(data['agro']));
         });
