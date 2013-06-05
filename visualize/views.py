@@ -2,7 +2,7 @@ import os
 import csv
 from django.conf import settings
 from django.shortcuts import HttpResponse, render_to_response
-from kartograph import Kartograph
+# from kartograph import Kartograph
 
 
 
@@ -12,35 +12,35 @@ def home(request):
     return HttpResponse('OK Here comes')
 
 
-def generate(request):
-    cfg = {
-        "layers" : [
-            {
-                "id" : "nepal",
-                "src" : os.path.join(settings.BASEPATH, 'data',
-                                     'nepal_administrative.shp')
-            },
-            {
-                "id" : "mygrat",
-                "special" : "graticule",
-                "latitudes" : 1,
-                "longitudes" : 1
-            }
-        ],
-        "proj" : {
-            "id" : "satellite",
-            "lon0" : 85.4,
-            "lat0" : 27.7,
-            "dist" : 1.3,
-            "up" : 3
-        },
-        "bounds" : {
-            "mode" : "bbox",
-            "data" : [79, 25, 90, 31]
-        }
-    }
-    k = Kartograph()
-    k.generate(cfg, outfile=os.path.join(settings.BASEPATH, 'static', 'nepal.svg'))
+# def generate(request):
+#     cfg = {
+#         "layers" : [
+#             {
+#                 "id" : "nepal",
+#                 "src" : os.path.join(settings.BASEPATH, 'data',
+#                                      'nepal_administrative.shp')
+#             },
+#             {
+#                 "id" : "mygrat",
+#                 "special" : "graticule",
+#                 "latitudes" : 1,
+#                 "longitudes" : 1
+#             }
+#         ],
+#         "proj" : {
+#             "id" : "satellite",
+#             "lon0" : 85.4,
+#             "lat0" : 27.7,
+#             "dist" : 1.3,
+#             "up" : 3
+#         },
+#         "bounds" : {
+#             "mode" : "bbox",
+#             "data" : [79, 25, 90, 31]
+#         }
+#     }
+#     k = Kartograph()
+#     k.generate(cfg, outfile=os.path.join(settings.BASEPATH, 'static', 'nepal.svg'))
 
 
 def index(request):

@@ -10,6 +10,45 @@
     <script src="{% static 'raphael-min.js' %}"></script>
     <script src="{% static 'kartograph.min.js' %}"></script>
     <script src="{% static 'common.js' %}"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      		google.load("visualization", "1", {packages:["corechart"]});
+	      	google.setOnLoadCallback(drawChart);
+	      	function drawChart() {
+	        	var data = google.visualization.arrayToDataTable([
+	          		['Year', 'Insecticides', 'Rodenticides'],
+	          		['2004',  48.21,      1.52],
+	          		['2005',  67.75,      1.46],
+			        ['2006',  46.79,      1.81],
+	        	]);
+
+	        	var data_food = google.visualization.arrayToDataTable([
+	        		['Year', 'Foods'],
+	        		['2004',  104208],
+	          		['2005',  104260],
+			        ['2006',  104312],
+
+	        	]);
+
+
+		        var options = {
+		          title: 'Pesticides',
+		          hAxis: {title: 'Year', titleTextStyle: {color: 'red'}},
+		        };
+
+		        var options_food = {
+		          title: 'Foods',
+		          hAxis: {title: 'Year', titleTextStyle: {color: 'green'}},
+		        };
+
+		        var chart = new google.visualization.ColumnChart(document.getElementById('pesticide_div'));
+		        chart.draw(data, options);
+
+		        var chart_food = new google.visualization.ColumnChart(document.getElementById('food_div'));
+		        chart_food.draw(data_food, options_food);
+
+		    }
+    </script>
 </head>
 <body>
 	<div id="wrapper">
@@ -24,6 +63,8 @@
 			<div id="content">
 				<div id="page">
                     <div id="map"></div>
+                    <div id="pesticide_div" style="width: 600px; height: 500px;"></div>
+                    <div id="food_div" style="width: 500px; height: 500px;"></div>
 				</div><!--End #page-->
 			</div><!--End #content-->
 		</div><!--End #content-wrap-->
