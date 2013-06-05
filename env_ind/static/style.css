@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	background: #01451C url(../static/bg.png) no-repeat center top;
+	font: normal 12px/18px Arial, sans-serif;
+}
+#wrapper{
+
+}
+#page{
+	margin: 0 auto;
+	padding: 0;
+	width: 900px;
+}
+#logo-wrap{
+	margin: 10px 0;
+}
+#logo-wrap h1{
+	text-align: center;
+}
+#content-sec{
+	background: #319B5B;
+	margin-bottom: 20px;
+	padding: 20px;
+}
+#map-wrap{
+	height: 300px;
+}
+#filter-wrap{
+	color: #333333;
+}
+.filter{
+	margin-bottom: 10px;
+}
+.chart{
+	background: #ffffff;
+	height: 300px;
+}

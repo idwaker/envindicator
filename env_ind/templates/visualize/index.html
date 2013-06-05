@@ -1,12 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    {% load static from staticfiles %}
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Environment Indicator</title>
-	<link rel="stylesheet" href="{% static 'reset.css' %}" media="all">
-	<link rel="stylesheet" href="{% static 'style.css' %}" media="all">
-    <script src="{% static 'jquery-1.7.2.min.js' %}"></script>
+	<title>ENVIRONMENT INDICATOR</title>
+	{% load static from staticfiles %}
+	<link href="{% static 'reset.css'%}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'style.css'%}" rel="stylesheet" type="text/css" />
+	<link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
+	<script src="{% static 'jquery-1.7.2.min.js' %}"></script>
     <script src="{% static 'raphael-min.js' %}"></script>
     <script src="{% static 'kartograph.min.js' %}"></script>
     <script src="{% static 'common.js' %}"></script>
@@ -50,37 +51,31 @@
 		    }
     </script>
 </head>
+
 <body>
 	<div id="wrapper">
+		<div id="page">
+			<div id="logo-wrap">
+				<h1><a href="#"><img src="/static/logo.png" alt="" title="" height="210" width="326"/></a></h1>
+			</div>
 
-		<div id="content-wrap">
-			<div id="header">
-				<div id="page">
-					<!--<h1><a href="#"><img src="images/logo.png" alt="logo" title="" height="72" width="200" /></a></h1>-->
-				</div><!--End #page-->
-			</div><!--End #header-->
+			<div id="content-sec">
+				<div id="map-wrap">
+					<div id="map" class="map">
 
-			<div id="content">
-				<div id="page">
-                    <select name="year" id="year">
-                        <option value="2004">2004</option>
-                        <option value="2004">2005</option>
-                        <option value="2004">2006</option>
-                    </select>
-                    <div id="map"></div>
-                    <div id="pesticide_div" style="width: 600px; height: 500px;"></div>
-                    <div id="food_div" style="width: 500px; height: 500px;"></div>
-				</div><!--End #page-->
-			</div><!--End #content-->
-		</div><!--End #content-wrap-->
+					</div>
+					<div class="map-control">
 
-		<div id="footer">
-			<div id="page">
-				<div class="copyright">
-					Agro Index.
+					</div>
 				</div>
-			</div><!--End #page-->
-		</div><!--End .footer-->
+				<div id="filter-wrap">
+					<div class="chart">
+						<div id="pesticide_div" style="width: 600px; height: 500px;"></div>
+                    	<div id="food_div" style="width: 500px; height: 500px;"></div>
+					</div>
+				</div>
+			</div>
+		</div><!--End #page-->
 	</div><!--End #wrapper-->
 </body>
 </html>
