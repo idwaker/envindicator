@@ -13,24 +13,17 @@ $(document).ready(function(){
             map.addLayer('mygrat');
             map.addLayer('nepal');
             //map.addLayer('marker');
-            console.log(map.getLayer('nepal'));
+            console.log(map.getLayer('mygrat'));
+            
         });
-        
-        //console.log(map.getLayer('nepal').getPathsData());
-        //map.addSymbols({
-        //    type: Kartograph.Label,
-        //    data: map.getLayer('nepal').getPathsData(),
-        //    location: function(d) {
-        //        console.log(d);
-        //        //return 'nepal.' + d.id;
-        //    },
-        //    text: function(d) {
-        //        //return d.name;
-        //    }
-        //});
     }, { zoom : 1.2 });
     
-    
+    map.addSymbols({
+        type: Kartograph.Label,
+        data: [{ name: 'Kathmandu', lon: 85, lat: 27}],
+        location: function(d) { return [d.lon, d.lat] },
+        text: function(d) { return 'Foo'; } 
+    });
 
     //var data = {
     //    population : 26494504 ,
