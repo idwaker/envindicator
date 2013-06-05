@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {% load static from staticfiles %}
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Environment Indicator</title>
+	<link rel="stylesheet" href="{% static 'reset.css' %}" media="all">
+	<link rel="stylesheet" href="{% static 'style.css' %}" media="all">
+    <script src="{% static 'jquery-1.7.2.min.js' %}"></script>
+    <script src="{% static 'raphael-min.js' %}"></script>
+    <script src="{% static 'kartograph.min.js' %}"></script>
+    <script src="{% static 'common.js' %}"></script>
+</head>
+<body>
+	<div id="wrapper">
+
+		<div id="content-wrap">
+			<div id="header">
+				<div id="page">
+					<!--<h1><a href="#"><img src="images/logo.png" alt="logo" title="" height="72" width="200" /></a></h1>-->
+				</div><!--End #page-->
+			</div><!--End #header-->
+
+			<div id="content">
+				<div id="page">
+                    <div id="map"></div>
+				</div><!--End #page-->
+			</div><!--End #content-->
+		</div><!--End #content-wrap-->
+
+		<div id="footer">
+			<div id="page">
+				<div class="copyright">
+					Agro Index.
+				</div>
+			</div><!--End #page-->
+		</div><!--End .footer-->
+	</div><!--End #wrapper-->
+</body>
+</html>
